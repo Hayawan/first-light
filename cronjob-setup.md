@@ -1,4 +1,4 @@
-# Morning Prompt Cronjob Setup
+# First Light: Morning Prompt Cronjob Setup
 
 ## Steps
 
@@ -32,7 +32,7 @@ exec: openclaw cron add \
   --tz "USER_TIMEZONE" \
   --session isolated \
   --model "google/gemini-flash-2.0" \
-  --message "[INSTRUCTION: DO NOT USE ANY TOOLS] It's morning prompt time. Read the file at prompts/morning-prompts.md in the workspace. Pick a random prompt from an appropriate category for today (check the day of the week and follow the weighting in your morning-prompt skill). Send it via the configured notification channel in a clean, encouraging format. Keep your commentary to one sentence." \
+  --message "It's morning prompt time. Read the file at prompts/morning-prompts.md in the workspace. Pick a random prompt from an appropriate category for today (check the day of the week and follow the weighting in your morning-prompt skill). Send it via the configured notification channel in a clean, encouraging format. Keep your commentary to one sentence. Use only the tools needed to read the file and send the message — do not browse the web, spawn sub-agents, or take any other actions." \
   --announce \
   --best-effort-deliver
 ```
