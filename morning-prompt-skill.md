@@ -76,5 +76,5 @@ If the user responds to the prompt in conversation:
 ## Guidelines
 
 - Keep your added commentary brief — one sentence max
-- Vary the sign-off occasionally to keep it fresh
+- Vary the sign-on/off occasionally to keep it fresh
 - Do not hardcode any channel or model — always read from config

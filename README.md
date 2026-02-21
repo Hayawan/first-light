@@ -1,4 +1,4 @@
-# First Light: A Morning Prompt Skill
+# Morning Prompt Skill — README
 
 A daily writing prompt skill for OpenClaw (also compatible with Claude Code). Delivers one prompt each morning from a curated collection across three categories: Intention Setting, Creative Writing, and Productivity.
 
@@ -23,8 +23,10 @@ Hand `cronjob-setup.md` to your OpenClaw agent (or paste it into Claude Code) an
 - `anthropic/claude-haiku-4-5` — reliable Anthropic option (~$0.05–0.09/month with caching)
 - Any local Ollama model — zero API cost if you're running models locally
 
-**Schedule and timezone**: The cron expression in `cronjob-setup.md` defaults to `0 7 * * *` (7:00 AM server time). If your VPS is in UTC and you're not, the agent will convert your local time during setup — just tell it your timezone.
+**Schedule and timezone**: The cron expression defaults to `0 7 * * *` (7:00 AM server time). If your VPS is in UTC and you're not, the agent will convert your local time during setup — just tell it your timezone.
 
-**Prompt rotation**: The skill tries not to repeat prompts within a 7-day window if OpenClaw memory is enabled. If memory is off, rotation is random each run.
+**Prompt rotation**: The skill avoids repeating prompts within a 7-day window by scanning recent journal entries. This works even without OpenClaw memory enabled.
+
+**Companion skill**: If you run into cron delivery failures, wrong execution times, or the agent calling unexpected tools during scheduled runs, install [ez-cronjob](https://github.com/openclaw/skills/tree/main/skills/promadgenius/ez-cronjob) alongside this skill. It documents the most common OpenClaw cron failure patterns and their fixes. The cronjob setup in this skill already follows its recommendations (isolated sessions, explicit timezones, `--best-effort-deliver`, tool suppression), but ez-cronjob gives your agent deeper troubleshooting context if something goes wrong.
 
 **Claude Code usage**: Drop `morning-prompt-skill.md` into your project and reference `morning-prompts.md` from the same directory. The cronjob setup won't apply directly, but you can trigger the skill manually and the delivery/selection logic still holds.

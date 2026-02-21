@@ -23,22 +23,21 @@ Before writing the job entry, ask the user:
 - **Schedule**: "What time should I send your morning prompt? (e.g. 7:00 AM — and what timezone are you in so I can convert to server time?)"
 - **Model**: "Which model should run this job? It's lightweight, so a fast/cheap model is ideal. I'd suggest `google/gemini-flash-2.0` for lowest cost, or `anthropic/claude-haiku-4-5` if you prefer Anthropic. Or name any model your instance has access to."
 
-Then add the following entry to `~/.openclaw/cron/jobs.json`, substituting the user's choices for `expression` and `model`:
+Use `exec` (or `bash`) to register the job — do not call the `cron` tool directly, as it can deadlock with the gateway:
 
-```json
-{
-  "id": "morning-prompt",
-  "name": "Morning Writing Prompt",
-  "schedule": {
-    "type": "cron",
-    "expression": "0 7 * * *"
-  },
-  "enabled": true,
-  "prompt": "It's morning prompt time. Read the file at prompts/morning-prompts.md in the workspace. Pick a random prompt from an appropriate category for today (check the day of the week and follow the weighting in your morning-prompt skill). Send it via the configured notification channel in a clean, encouraging format. Keep your commentary to one sentence.",
-  "model": "google/gemini-flash-2.0",
-  "announce": true
-}
+```bash
+exec: openclaw cron add \
+  --name "morning-prompt" \
+  --cron "0 7 * * *" \
+  --tz "USER_TIMEZONE" \
+  --session isolated \
+  --model "google/gemini-flash-2.0" \
+  --message "[INSTRUCTION: DO NOT USE ANY TOOLS] It's morning prompt time. Read the file at prompts/morning-prompts.md in the workspace. Pick a random prompt from an appropriate category for today (check the day of the week and follow the weighting in your morning-prompt skill). Send it via the configured notification channel in a clean, encouraging format. Keep your commentary to one sentence." \
+  --announce \
+  --best-effort-deliver
 ```
+
+Substitute the user's chosen time, timezone, and model before running.
 
 ### 4. Restart the gateway
 
@@ -49,9 +48,8 @@ sudo systemctl restart openclaw
 ### 5. Verify
 
 ```bash
-openclaw cron list
-openclaw cron run morning-prompt
-openclaw cron runs morning-prompt
+exec: openclaw cron list
+exec: openclaw cron run morning-prompt
 ```
 
 Confirm the test run delivered to the user's notification channel before closing out.
