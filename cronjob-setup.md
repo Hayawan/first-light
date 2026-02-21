@@ -13,7 +13,7 @@ cp morning-prompts.md ~/.openclaw/workspace/prompts/morning-prompts.md
 
 ```bash
 mkdir -p ~/.openclaw/workspace/skills/morning-prompt
-cp morning-prompt-skill.md ~/.openclaw/workspace/skills/morning-prompt/SKILL.md
+cp SKILL.md ~/.openclaw/workspace/skills/morning-prompt/SKILL.md
 ```
 
 ### 3. Add the cronjob

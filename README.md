@@ -6,8 +6,8 @@ A daily writing prompt skill for OpenClaw (also compatible with Claude Code). De
 
 | File | Purpose |
 |---|---|
-| `morning-prompts.md` | The prompt library (60 prompts across 3 categories) |
-| `morning-prompt-skill.md` | Skill definition — read by the agent at runtime |
+| `morning-prompts.md` | The prompt library (210 prompts across 3 categories) |
+| `SKILL.md` | Skill definition — read by the agent at runtime |
 | `cronjob-setup.md` | Agent instructions for configuring the cronjob |
 
 ## Quick start
@@ -29,4 +29,4 @@ Hand `cronjob-setup.md` to your OpenClaw agent (or paste it into Claude Code) an
 
 **Companion skill**: If you run into cron delivery failures, wrong execution times, or the agent calling unexpected tools during scheduled runs, install [ez-cronjob](https://github.com/openclaw/skills/tree/main/skills/promadgenius/ez-cronjob) alongside this skill. It documents the most common OpenClaw cron failure patterns and their fixes. The cronjob setup in this skill already follows its recommendations (isolated sessions, explicit timezones, `--best-effort-deliver`, tool suppression), but ez-cronjob gives your agent deeper troubleshooting context if something goes wrong.
 
-**Claude Code usage**: Drop `morning-prompt-skill.md` into your project and reference `morning-prompts.md` from the same directory. The cronjob setup won't apply directly, but you can trigger the skill manually and the delivery/selection logic still holds.
+**Claude Code usage**: Drop `SKILL.md` into your project and reference `morning-prompts.md` from the same directory. The cronjob setup won't apply directly, but you can trigger the skill manually and the delivery/selection logic still holds.
