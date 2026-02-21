@@ -1,4 +1,4 @@
-# Morning Prompt Skill — README
+# First Light: A Morning Prompt Skill
 
 A daily writing prompt skill for OpenClaw (also compatible with Claude Code). Delivers one prompt each morning from a curated collection across three categories: Intention Setting, Creative Writing, and Productivity.
 
