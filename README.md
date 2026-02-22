@@ -19,7 +19,7 @@ Hand `cronjob-setup.md` to your OpenClaw agent (or paste it into Claude Code) an
 **Notification channel**: This skill assumes a notification channel is already configured in OpenClaw. It doesn't set one up — that's a separate step done when you first configure your gateway. If you haven't done that yet, do it before running the cronjob setup. Supported channels typically include Matrix, Telegram, Discord, Slack, ntfy, and email — check your OpenClaw gateway config docs for the `notify` block.
 
 **Model choice**: The cronjob setup will ask which model to use. This is a lightweight read-and-format task — any fast, cheap model is fine. Good defaults:
-- `google/gemini-flash-2.0` — lowest cost (~$0.01/month), good quality
+- `google/gemini-flash-2.5` — lowest cost (~$0.01/month), good quality
 - `anthropic/claude-haiku-4-5` — reliable Anthropic option (~$0.05–0.09/month with caching)
 - Any local Ollama model — zero API cost if you're running models locally
 
