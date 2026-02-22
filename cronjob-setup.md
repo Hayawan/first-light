@@ -38,14 +38,12 @@ exec: openclaw cron add \
   --session isolated \
   --wake-mode now \
   --model "USER_MODEL" \
-  --message "It's morning prompt time. Read the file at prompts/morning-prompts.md in the workspace. Pick a random prompt from an appropriate category for today (check the day of the week and follow the weighting in your first-light skill). Send it via the configured notification channel in a clean, encouraging format. Keep your commentary to one sentence." \
+  --message "Follow the logic in the 'first-light' skill to select a daily prompt from 'prompts/morning-prompts.md'. Once you have the final, formatted prompt text, you MUST send it by calling the message tool with these exact parameters: message(action='send', channel='USER_CHANNEL', to='USER_DESTINATION', message='<your formatted prompt text>')." \
   --announce \
-  --channel USER_CHANNEL \
-  --to "USER_DESTINATION" \
   --best-effort-deliver
 ```
 
-Substitute the user's values for all `USER_*` placeholders before running.
+Substitute the user's values for all `USER_*` placeholders before running. Note that `USER_CHANNEL` and `USER_DESTINATION` belong inside the `--message` string — this is intentional. The isolated agent session has no ambient delivery context, so the target must be part of the task instruction itself.
 
 **`--wake-mode now`** — ensures the job fires immediately if the gateway was offline at the scheduled time, rather than skipping until the next occurrence.
 

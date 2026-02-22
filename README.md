@@ -22,7 +22,13 @@ Hand `cronjob-setup.md` to your OpenClaw agent (or paste it into Claude Code) an
 
 **Schedule and timezone**: The cron expression defaults to `0 7 * * *` (7:00 AM server time). If your VPS is in UTC and you're not, the agent will convert your local time during setup — just tell it your timezone.
 
+**Delivery target**: The channel and destination are embedded directly inside the job's message instruction — not as flags on the cron command. This is intentional: isolated agent sessions have no ambient delivery context, so the target must be part of the task itself. If you ever need to change your Matrix room, switch channels, or update the destination, you'll need to delete and recreate the cron job rather than editing a flag.
+
+**Message format**: Each morning delivery opens with `☀️ Good morning!`, presents the two Daily Anchor questions first (short-form answers), then the random writing prompt with a closing line encouraging the user to spend 10–15 minutes on it. The agent is instructed to vary the sign-off occasionally — things like "Take your time with this one" or "No need to finish it — just start" — so it doesn't feel mechanical over time.
+
 **Prompt rotation**: The skill avoids repeating prompts within a 7-day window by scanning recent journal entries. This works even without OpenClaw memory enabled.
+
+**Changing the format**: The delivery format, anchor questions, and sign-off guidance all live in `SKILL.md`. Edit that file to adjust tone, add anchors, or change the structure — no need to touch the cronjob config.
 
 **Companion skill**: If you run into cron delivery failures, wrong execution times, or the agent calling unexpected tools during scheduled runs, install [ez-cronjob](https://github.com/openclaw/skills/tree/main/skills/promadgenius/ez-cronjob) alongside this skill. It documents the most common OpenClaw cron failure patterns and their fixes. The cronjob setup in this skill already follows its recommendations (isolated sessions, explicit timezones, `--best-effort-deliver`, `--wake-mode now`), but ez-cronjob gives your agent deeper troubleshooting context if something goes wrong.
 

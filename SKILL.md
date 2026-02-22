@@ -4,10 +4,7 @@ description: Skill for selecting and delivering a daily morning writing prompt w
 version: 1.0
 ---
 
-# Morning Prompt Skill
-
-> **Prerequisites**: Requires the morning-prompt cronjob to be configured.
-> If it isn't, see `cronjob-setup.md` before proceeding.
+# First Light
 
 ## Purpose
 
